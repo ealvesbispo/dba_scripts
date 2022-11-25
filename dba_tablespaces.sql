@@ -47,6 +47,7 @@ COLUMN name        FORMAT a30                HEADING 'Tablespace Name'
 COLUMN type        FORMAT a15                HEADING 'TS Type'
 COLUMN extent_mgt  FORMAT a10                HEADING 'Ext. Mgt.'
 COLUMN segment_mgt FORMAT a10                HEADING 'Seg. Mgt.'
+COLUMN bigfile     FORMAT a8                 HEADING 'Big File'
 COLUMN ts_size     FORMAT 9,999,999,999,999  HEADING 'Tablespace Size'
 COLUMN used        FORMAT 9,999,999,999,999  HEADING 'Used (in bytes)'
 COLUMN free        FORMAT 9,999,999,999,999  HEADING 'Free (in bytes)'
@@ -65,6 +66,7 @@ SELECT
   , d.contents                                          type
   , d.extent_management                                 extent_mgt
   , d.segment_space_management                          segment_mgt
+  , d.bigfile                                           bigfile
   , NVL(a.bytes, 0)                                     ts_size
   , NVL(a.bytes - NVL(f.bytes, 0), 0)                   used
   -- , NVL(f.bytes, 0)                                     free
@@ -94,6 +96,7 @@ SELECT
   , d.contents                       type
   , d.extent_management              extent_mgt
   , d.segment_space_management       segment_mgt
+  , d.bigfile                        bigfile
   , NVL(a.bytes, 0)                  ts_size
   , NVL(t.bytes, 0)                  used
   -- , NVL(a.bytes - NVL(t.bytes,0), 0) free
